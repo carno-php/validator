@@ -1,0 +1,22 @@
+syntax="proto3";
+
+package carno.validator.tests.samples.input;
+
+message RequestA {
+    int32 id = 1;
+    string name = 2;
+    SubRequestA sub = 5;
+    repeated string chars = 8;
+    repeated RField fields = 9;
+}
+
+message SubRequestA {
+    int32 sid = 1;
+    string title = 2;
+}
+
+message RField {
+    int32 id = 1;
+    int32 kid = 2;
+    string desc = 3;
+}

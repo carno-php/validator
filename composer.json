@@ -1,0 +1,25 @@
+{
+  "name": "carno-php/validator",
+  "license": "MIT",
+  "require": {
+    "carno-php/container": "^1.0",
+    "respect/validation": "~1.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Carno\\Validator\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Carno\\Validator\\Tests\\": "tests",
+      "GPBMetadata\\": "tests/GPBMetadata"
+    }
+  },
+  "minimum-stability": "dev",
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    }
+  }
+}
