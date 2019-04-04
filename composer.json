@@ -5,6 +5,9 @@
     "carno-php/container": "^1.0",
     "respect/validation": "~1.1"
   },
+  "require-dev": {
+    "moolex/protobuf-php": "^3.5"
+  },
   "autoload": {
     "psr-4": {
       "Carno\\Validator\\": "src"
