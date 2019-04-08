@@ -23,6 +23,8 @@ class CustomRuleTest extends PBTestBase
 
     public function testValid()
     {
+        $this->initialize();
+
         $this->validating(ClassB::class, 'm1', new RequestA, [
         ], UnexpectedValueException::class);
 

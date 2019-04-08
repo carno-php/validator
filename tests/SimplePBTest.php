@@ -25,6 +25,8 @@ class SimplePBTest extends PBTestBase
 
     public function testValid()
     {
+        $this->initialize();
+
         $this->validating(ClassA::class, 'm1', new RequestA, [
             'id' => 10,
         ], UnexpectedValueException::class);

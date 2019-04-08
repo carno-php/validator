@@ -27,16 +27,8 @@ abstract class PBTestBase extends TestCase
      */
     protected $inspector = null;
 
-    /**
-     * PBTestBase constructor.
-     * @param null|string $name
-     * @param array $data
-     * @param string $dataName
-     */
-    public function __construct(?string $name = null, array $data = [], string $dataName = '')
+    protected function initialize() : void
     {
-        parent::__construct($name, $data, $dataName);
-
         $this->inspector = new Inspector(new Protobuf);
 
         $coordinator = new Coordinator(new Group, new Inherit, new Named, new Cloning);
