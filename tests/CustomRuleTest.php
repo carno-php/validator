@@ -11,21 +11,38 @@ namespace Carno\Validator\Tests;
 use Carno\Validator\Anno\Loader;
 use Carno\Validator\Tests\Samples\ClassB;
 use Carno\Validator\Tests\Samples\Input\RequestA;
+use Carno\Validator\Tests\Samples\Input\RField;
+use UnexpectedValueException;
 
 class CustomRuleTest extends PBTestBase
 {
     protected function parsing(Loader $loader) : void
     {
-        return;
         $loader->parsing(ClassB::class);
     }
 
     public function testValid()
     {
-        $this->markTestSkipped('TODO');
+        $this->validating(ClassB::class, 'm1', new RequestA, [
+        ], UnexpectedValueException::class);
 
-        $request = new RequestA;
+        $this->validating(ClassB::class, 'm1', new RequestA, [
+            'name' => 'NameA',
+        ], UnexpectedValueException::class);
 
-        $this->inspector->valid(ClassB::class, 'm1', $request);
+        $this->validating(ClassB::class, 'm1', new RequestA, [
+            'name' => 'NameC',
+            'fields' => [[new RField, ['id' => 1]]]
+        ], UnexpectedValueException::class);
+
+        $this->validating(ClassB::class, 'm1', new RequestA, [
+            'name' => 'NameC',
+            'fields' => [[new RField, ['id' => 101]]]
+        ], UnexpectedValueException::class);
+
+        $this->validating(ClassB::class, 'm1', new RequestA, [
+            'name' => 'NameD',
+            'fields' => [[new RField, ['id' => 50]]],
+        ]);
     }
 }

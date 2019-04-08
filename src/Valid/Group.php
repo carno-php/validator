@@ -55,7 +55,7 @@ class Group
     public function start(string $named, Executor $linker) : void
     {
         if (isset($this->groups[$named])) {
-            throw new DuplicatedGroupException;
+            throw new DuplicatedGroupException($named);
         }
         $this->session = $named;
         $this->groups[$named] = ['linked' => $linker];

@@ -27,10 +27,21 @@ class Loader
      */
     private $inspector = null;
 
+    /**
+     * @var Executor
+     */
+    private $builder = null;
+
+    /**
+     * Loader constructor.
+     * @param Coordinator $coordinator
+     * @param Inspector $inspector
+     */
     public function __construct(Coordinator $coordinator, Inspector $inspector)
     {
         $this->coordinator = $coordinator;
         $this->inspector = $inspector;
+        $this->builder = new Executor;
     }
 
     /**
@@ -48,6 +59,16 @@ class Loader
             $this->coordinator->group()->stop();
 
             $this->inspector->join($class, $method->getName(), $builder);
+        }
+    }
+
+    /**
+     * @param array $rules
+     */
+    public function walking(array $rules) : void
+    {
+        foreach ($rules as $rule) {
+            $this->acknowledge($this->builder, array_shift($rule), implode(' ', $rule) ?: true);
         }
     }
 
